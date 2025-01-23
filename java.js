@@ -5,28 +5,18 @@
 
 // STATE 3: PENDING, FULFILLED, REJECT
 
+const users = fetch("http://jsonplaceholder.typicode.com/users");
 
-const MyNewPromise = new Promise((resolve, reject) => {
-    const error = false;
-    if (!error) {
-        resolve("Yes resolved the Promise");
-    } else {
-        reject("No! rejected the Promise");
-    }
-});
+// Pending
+console.log(users);
 
-const MyNextPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve("MyNextPromise is resolved");
-    }, 3000);
-});
+fetch("http://jsonplaceholder.typicode.com/users")
+.then(response =>{
+     return response.json();
+})
+.then(data =>{
+    data.forEach(user=>{
+    console.log(user);
 
-MyNextPromise.then(value => {
-    console.log(value);
-});
-
-MyNewPromise.then(value => {
-    console.log(value);
-}).catch(error => {
-    console.log(error);
+    })
 });
